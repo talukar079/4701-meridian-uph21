@@ -23,7 +23,7 @@ import {
 
 const LOGO_URL = "https://i.imgur.com/8pb2amZ.jpg"; 
 
-const ZAPIER_WEBHOOK_URL = ""; 
+const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/25974685/ug64l7b/"; 
 const agentPhoneNumber = "17862957184"; 
 const whatsappMessage = encodeURIComponent("Hi Alex, I'm interested in 6899 Collins Ave, Unit LPH04. Is it still available?");
 const whatsappUrl = `https://wa.me/${agentPhoneNumber}?text=${whatsappMessage}`;
