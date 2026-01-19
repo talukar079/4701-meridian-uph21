@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  // ✅ Ensures OG/Twitter image URLs resolve as absolute URLs for WhatsApp/iMessage previews
+  // Ensures OG/Twitter image URLs resolve as absolute URLs (Apple/iMessage-safe)
   metadataBase: new URL("https://4701meridianuph21.com"),
 
-  // ✅ Helps keep link previews + SEO consistent
+  // Canonical URL for SEO + previews
   alternates: {
     canonical: "https://4701meridianuph21.com",
   },
@@ -30,11 +30,12 @@ export const metadata: Metadata = {
     description:
       "A crown jewel residence at The Ritz-Carlton Residences Miami Beach. Upper penthouse living with sweeping views.",
     url: "https://4701meridianuph21.com",
-    siteName: "The Algarin Group · Compass",
+
+    // ✅ FIXED: iMessage-friendly site label
+    siteName: "4701MeridianUPH21.com",
+
     images: [
       {
-        // With metadataBase above, this becomes:
-        // https://4701meridianuph21.com/og-image.png
         url: "/og-image.png",
         width: 1200,
         height: 630,
@@ -49,8 +50,6 @@ export const metadata: Metadata = {
     title: "4701 Meridian Ave · UPH21 | Miami Beach",
     description:
       "Upper penthouse living at The Ritz-Carlton Residences Miami Beach.",
-    // With metadataBase above, this becomes:
-    // https://4701meridianuph21.com/og-image.png
     images: ["/og-image.png"],
   },
 };
