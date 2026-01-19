@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,10 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  // Ensures OG/Twitter image URLs resolve as absolute URLs (Apple/iMessage-safe)
   metadataBase: new URL("https://4701meridianuph21.com"),
 
-  // Canonical URL for SEO + previews
   alternates: {
     canonical: "https://4701meridianuph21.com",
   },
@@ -30,10 +29,7 @@ export const metadata: Metadata = {
     description:
       "A crown jewel residence at The Ritz-Carlton Residences Miami Beach. Upper penthouse living with sweeping views.",
     url: "https://4701meridianuph21.com",
-
-    // ✅ FIXED: iMessage-friendly site label
-    siteName: "4701MeridianUPH21.com",
-
+    siteName: "The Algarin Group · Compass",
     images: [
       {
         url: "/og-image.png",
@@ -56,15 +52,35 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+
+        {/* OpenPanel Analytics (client-side only). Uses Client ID from Vercel env var. */}
+        <Script
+          src="https://openpanel.dev/op1.js"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="openpanel-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.op=window.op||function(){(window.op.q=window.op.q||[]).push(arguments)};
+              window.op('init', {
+                clientId: '${process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID}',
+                trackScreenViews: true,
+                trackOutgoingLinks: true,
+                trackAttributes: true,
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );
 }
-
