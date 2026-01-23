@@ -23,9 +23,9 @@ import {
 
 const LOGO_URL = "https://i.imgur.com/8pb2amZ.jpg"; 
 
-const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/25974685/ug64l7b/"; 
+const ZAPIER_WEBHOOK_URL = ""; 
 const agentPhoneNumber = "17862957184"; 
-const whatsappMessage = encodeURIComponent("Hi Alex, I'm interested in 6899 Collins Ave, Unit LPH04. Is it still available?");
+const whatsappMessage = encodeURIComponent("Hi Alex, I'm interested in 4701 Meridian Ave, Unit UPH21. Is it still available?");
 const whatsappUrl = `https://wa.me/${agentPhoneNumber}?text=${whatsappMessage}`;
 
 const property = {
@@ -164,85 +164,6 @@ const ImageComponent = (props) => {
       loading="lazy"
       onClick={onClick}
     />
-  );
-};
-
-// ------------------------------------------------------------------------------------------
-// DISCLOSURES (same style as we used before)
-// ------------------------------------------------------------------------------------------
-const DisclosureBlock = ({ className = "" }) => {
-  return (
-    <div className={`mt-4 pt-4 border-t border-black/5 ${className}`}>
-      <p className="text-[10px] leading-relaxed text-black/40">
-        By submitting this form, you consent to be contacted by Alex Algarin and/or Compass via call, text,
-        and email (including automated means). Consent is not a condition of purchase. Message and data
-        rates may apply.
-      </p>
-      <p className="text-[10px] leading-relaxed text-black/40 mt-3">
-        Alex Algarin is a real estate agent affiliated with COMPASS, a licensed real estate broker and
-        abides by equal housing opportunity laws. All material presented herein is intended for informational
-        purposes only. Information is compiled from sources deemed reliable but is subject to errors,
-        omissions, changes in price, condition, sale, or withdrawal without notice. No statement is made as
-        to accuracy of any description. All measurements and square footages are approximate. This is not
-        intended to solicit properties already listed. Nothing herein shall be construed as legal, accounting
-        or other professional advice outside the realm of real estate brokerage.
-      </p>
-      <div className="mt-3">
-        <a
-          href="#disclosures"
-          className="text-[10px] uppercase tracking-widest font-medium text-black/50 hover:text-[#C5A27D] transition"
-        >
-          View Disclosures
-        </a>
-      </div>
-    </div>
-  );
-};
-
-const FullDisclosuresSection = () => {
-  return (
-    <section id="disclosures" className="py-24 bg-[#FDFCFB] border-t border-black/5 px-8">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          <div className="space-y-6">
-            <h2 className="text-[10px] uppercase tracking-[0.4em] text-[#C5A27D]">Disclosures</h2>
-            <h3 className="text-4xl md:text-5xl font-serif leading-tight">
-              Important information & compliance
-            </h3>
-            <p className="text-black/60 leading-relaxed font-light text-sm max-w-xl">
-              Please review the disclosures below. If you have questions, contact Alex directly.
-            </p>
-          </div>
-
-          <div className="bg-white p-10 shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-black/5 rounded-sm">
-            <p className="text-[10px] leading-relaxed text-black/40">
-              By submitting any form on this page, you consent to be contacted by Alex Algarin and/or
-              Compass via call, text, and email (including automated means). Consent is not a condition of
-              purchase. Message and data rates may apply.
-            </p>
-            <p className="text-[10px] leading-relaxed text-black/40 mt-4">
-              Alex Algarin is a real estate agent affiliated with COMPASS, a licensed real estate broker and
-              abides by equal housing opportunity laws. All material presented herein is intended for
-              informational purposes only. Information is compiled from sources deemed reliable but is subject
-              to errors, omissions, changes in price, condition, sale, or withdrawal without notice. No
-              statement is made as to accuracy of any description. All measurements and square footages are
-              approximate. This is not intended to solicit properties already listed. Nothing herein shall be
-              construed as legal, accounting or other professional advice outside the realm of real estate
-              brokerage.
-            </p>
-
-            <div className="mt-6 pt-6 border-t border-black/5">
-              <a
-                href="#residence"
-                className="text-[10px] uppercase tracking-widest font-medium text-black/50 hover:text-[#C5A27D] transition"
-              >
-                Back to top
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 };
 
@@ -399,7 +320,7 @@ const App = () => {
           </div>
           
           <div className="hidden md:flex items-center space-x-12">
-            {['Residence', 'Lifestyle', 'Gallery', 'Disclosures'].map((item) => (
+            {['Residence', 'Lifestyle', 'Gallery'].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className={`text-xs uppercase tracking-[0.2em] font-medium transition hover:text-[#C5A27D] ${isScrolled ? 'text-black' : 'text-white'}`}>
                 {item}
               </a>
@@ -479,16 +400,6 @@ const App = () => {
               Request Tour
             </button>
           </div>
-
-          {/* Inline disclosures link (optional subtle) */}
-          <div className="mt-6">
-            <a
-              href="#disclosures"
-              className="text-[10px] uppercase tracking-[0.35em] text-white/60 hover:text-white transition"
-            >
-              Disclosures
-            </a>
-          </div>
         </div>
 
         {/* Indicators */}
@@ -524,8 +435,8 @@ const App = () => {
             <section id="residence" className="space-y-8">
               <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-[#C5A27D]">The Property</h2>
               <h3 className="text-4xl md:text-5xl font-serif italic leading-tight">
-  A SkyHouse sanctuary suspended between light, water, and horizon.
-</h3>
+                An architectural sanctuary where <br /> light meets the bay.
+              </h3>
               <p className="text-xl text-black/60 leading-relaxed font-light max-w-xl">
                 {property.description}
               </p>
@@ -652,9 +563,6 @@ const App = () => {
                   <button type="submit" className="w-full bg-[#1A1A1A] hover:bg-[#C5A27D] text-white py-5 text-xs uppercase tracking-[0.3em] font-bold mt-10 transition-colors shadow-lg">
                     {formStatus === 'sending' ? 'Sending...' : 'Send Inquiry'}
                   </button>
-
-                  {/* ✅ Disclaimers directly under the form CTA (like we did before) */}
-                  <DisclosureBlock />
                 </form>
 
                 {formStatus === 'success' && (
@@ -711,26 +619,12 @@ const App = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-[1000px] md:h-[800px] transition-all duration-500 ease-in-out">
-            <div className="md:col-span-8 h-full">
-              <ImageComponent 
+          <div className="w-full h-[600px] md:h-[800px] relative">
+             <ImageComponent 
                 index={currentGalleryIndex % images.length} 
-                className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition duration-700 hover:opacity-90 cursor-pointer"
+                className="w-full h-full object-cover transition duration-700 cursor-pointer hover:opacity-95"
                 onClick={() => openLightbox(currentGalleryIndex % images.length)}
               />
-            </div>
-            <div className="md:col-span-4 grid grid-rows-2 gap-6 h-full">
-              <ImageComponent 
-                index={(currentGalleryIndex + 1) % images.length} 
-                className="w-full h-full object-cover transition duration-700 hover:opacity-90 cursor-pointer" 
-                onClick={() => openLightbox((currentGalleryIndex + 1) % images.length)}
-              />
-              <ImageComponent 
-                index={(currentGalleryIndex + 2) % images.length} 
-                className="w-full h-full object-cover transition duration-700 hover:opacity-90 cursor-pointer" 
-                onClick={() => openLightbox((currentGalleryIndex + 2) % images.length)}
-              />
-            </div>
           </div>
         </div>
       </section>
@@ -767,7 +661,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* New Agent & Reviews Section */}
+      {/* New Agent & Reviews Section - UPDATED: Slimmer and narrower */}
       <section className="py-16 bg-[#F5F3F0] px-8 border-t border-black/5">
         <div className="max-w-[1100px] mx-auto">
            <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -788,8 +682,6 @@ const App = () => {
                        >
                           Get Personalized Listings
                        </button>
-                       {/* Optional mini-disclaimer under this CTA too */}
-                       <DisclosureBlock className="border-black/10" />
                     </div>
                  </div>
              </div>
@@ -821,9 +713,6 @@ const App = () => {
            </div>
         </div>
       </section>
-
-      {/* ✅ Full Disclosures Section (anchor target) */}
-      <FullDisclosuresSection />
 
       {/* Footer */}
       <footer className="py-24 bg-[#FDFCFB] border-t border-black/5 px-8">
@@ -863,6 +752,9 @@ const App = () => {
             </button>
             
             {modalType === 'search' ? (
+              // --------------------------------------------------------------------------------------
+              // Personalized Search Form
+              // --------------------------------------------------------------------------------------
               <div className="flex flex-col justify-center space-y-6">
                  <div className="space-y-2 text-center">
                    <h3 className="text-2xl font-serif leading-tight">Let’s Find the Right Home for You</h3>
@@ -871,6 +763,7 @@ const App = () => {
                    </p>
                  </div>
                  <form onSubmit={handleSubmit} className="space-y-4">
+                   {/* HIDDEN SOURCE FIELD FOR CRM/ZAPIER */}
                    <input type="hidden" name="source" value="Personalized Search Request" />
 
                    <input name="fullName" required type="text" placeholder="FULL NAME" className="w-full border-b border-black/10 py-3 text-xs tracking-widest outline-none focus:border-[#C5A27D] transition" />
@@ -927,14 +820,13 @@ const App = () => {
                    <button type="submit" className="w-full bg-[#1A1A1A] text-white py-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-[#C5A27D] transition-colors mt-2">
                      {formStatus === 'sending' ? 'Sending...' : 'Find Homes That Fit Me'}
                    </button>
-
-                   {/* ✅ Disclaimers inside modal too (recommended) */}
-                   <DisclosureBlock className="border-black/10" />
-
                    <p className="text-[10px] text-center text-black/40 mt-2">No obligation. I’ll only send homes that match your criteria.</p>
                  </form>
               </div>
             ) : (
+              // --------------------------------------------------------------------------------------
+              // Private Viewing Request Form
+              // --------------------------------------------------------------------------------------
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-2 text-center">
                   <h3 className="text-3xl font-serif leading-tight">Request a Private Appointment</h3>
@@ -944,6 +836,7 @@ const App = () => {
                 </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* HIDDEN SOURCE FIELD FOR CRM/ZAPIER */}
                   <input type="hidden" name="source" value="Private Viewing Request - 4701 Meridian Ave, Unit UPH21" />
                   
                   <input name="fullName" required type="text" placeholder="FULL NAME" className="w-full border-b border-black/10 py-3 text-xs tracking-widest outline-none focus:border-[#C5A27D] transition" />
@@ -952,9 +845,6 @@ const App = () => {
                   <button type="submit" className="w-full bg-[#1A1A1A] text-white py-5 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-[#C5A27D] transition-colors">
                     {formStatus === 'sending' ? 'Sending...' : 'Submit Request'}
                   </button>
-
-                  {/* ✅ Disclaimers inside tour modal */}
-                  <DisclosureBlock className="border-black/10" />
                 </form>
               </div>
             )}
@@ -970,7 +860,7 @@ const App = () => {
           </button>
           
           <button onClick={prevLightboxImage} className="absolute left-4 text-white/50 hover:text-white p-4 z-10 hover:bg-white/10 rounded-full transition">
-            <ChevronLeft size={40} strokeWidth={1} />
+            <ChevronLeft size={40} />
           </button>
           
           <img 
@@ -981,7 +871,7 @@ const App = () => {
           />
 
           <button onClick={nextLightboxImage} className="absolute right-4 text-white/50 hover:text-white p-4 z-10 hover:bg-white/10 rounded-full transition">
-            <ChevronRight size={40} strokeWidth={1} />
+            <ChevronRight size={40} />
           </button>
           
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest uppercase">

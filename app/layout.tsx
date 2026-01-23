@@ -50,6 +50,10 @@ export const metadata: Metadata = {
   },
 };
 
+// Safe to read on the server; embedded into the client init script.
+// This is a public identifier (NOT a secret). Do not put any secret keys in client code.
+const OPENPANEL_CLIENT_ID = process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID ?? "";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,26 +64,49 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
 
-        {/* OpenPanel Analytics (client-side only). Uses Client ID from Vercel env var. */}
+        {/* --------------------------- OpenPanel Analytics --------------------------- */}
+        {/* Bootstrap queue first (so calls are queued until SDK loads) */}
+        <Script
+          id="openpanel-bootstrap"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.op = window.op || function(){ (window.op.q = window.op.q || []).push(arguments) };
+            `,
+          }}
+        />
+
+        {/* Load OpenPanel SDK */}
         <Script
           src="https://openpanel.dev/op1.js"
           strategy="afterInteractive"
         />
+
+        {/* Init (guard against missing env var to prevent 401 spam) */}
         <Script
           id="openpanel-init"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              window.op=window.op||function(){(window.op.q=window.op.q||[]).push(arguments)};
-              window.op('init', {
-                clientId: '${process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID}',
-                trackScreenViews: true,
-                trackOutgoingLinks: true,
-                trackAttributes: true,
-              });
+              (function() {
+                var cid = ${JSON.stringify(OPENPANEL_CLIENT_ID)};
+                if (!cid || cid === "undefined") {
+                  console.warn("[OpenPanel] Missing NEXT_PUBLIC_OPENPANEL_CLIENT_ID. Tracking disabled.");
+                  return;
+                }
+                window.op('init', {
+                  clientId: cid,
+                  trackScreenViews: true,
+                  trackOutgoingLinks: true,
+                  trackAttributes: true,
+                });
+                // Optional one-time debug event (uncomment to verify end-to-end):
+                // window.op('track', 'op_loaded', { host: location.host });
+              })();
             `,
           }}
         />
+        {/* ------------------------------------------------------------------------ */}
       </body>
     </html>
   );
